@@ -7,6 +7,7 @@ MAINTAINER ClassCat Co.,Ltd. <support@classcat.com>
 ########################################################################
 
 #--- HISTORY -----------------------------------------------------------
+# 16-may-15 : php5-gd php5-json php5-curl php5-imagick libapache2-mod-php5.
 # 08-may-15 : Created.
 #-----------------------------------------------------------------------
 
@@ -18,6 +19,7 @@ RUN update-locale LANG="en_US.UTF-8"
 
 RUN apt-get install -y openssh-server supervisor rsyslog mysql-client \
   apache2 php5 php5-mysql php5-mcrypt php5-intl \
+  php5-gd php5-json php5-curl php5-imagick libapache2-mod-php5 \
   && apt-get clean
 
 RUN mkdir -p /var/run/sshd
