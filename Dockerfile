@@ -7,6 +7,7 @@ MAINTAINER ClassCat Co.,Ltd. <support@classcat.com>
 ########################################################################
 
 #--- HISTORY -----------------------------------------------------------
+# 17-may-15 : sed -i.bak
 # 16-may-15 : php5-gd php5-json php5-curl php5-imagick libapache2-mod-php5.
 # 08-may-15 : Created.
 #-----------------------------------------------------------------------
@@ -24,14 +25,14 @@ RUN apt-get install -y openssh-server supervisor rsyslog mysql-client \
 
 RUN mkdir -p /var/run/sshd
 
-RUN sed -ri "s/^PermitRootLogin\s+.*/PermitRootLogin yes/" /etc/ssh/sshd_config
-# RUN sed -ri 's/UsePAM yes/#UsePAM yes/g' /etc/ssh/sshd_config
+RUN sed -i.bak -e "s/^PermitRootLogin\s*.*$/PermitRootLogin yes/" /etc/ssh/sshd_config
+# RUN sed -i -e 's/UsePAM yes/#UsePAM yes/g' /etc/ssh/sshd_config
 
 COPY assets/supervisord.conf /etc/supervisor/supervisord.conf
 
 RUN php5enmod mcrypt
 
-RUN sed -ir "s/^;date\.timezone =.*$/date\.timezone = 'Asia\/Tokyo'/" /etc/php5/apache2/php.ini
+RUN sed -i.bak -e "s/^;date\.timezone =.*$/date\.timezone = 'Asia\/Tokyo'/" /etc/php5/apache2/php.ini
 
 EXPOSE 22 80
 
